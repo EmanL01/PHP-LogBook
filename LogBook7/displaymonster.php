@@ -1,20 +1,20 @@
 <?php
 
-  $servername = 'localhost';
-  $db_name = 'db1_21906325';
-  $username = 'root';
-  $password = '';
+ $servername = 'localhost';
+ $dbname = 'phpmyadmin';
+ $username = 'root';
+ $password = '';
+  
+ $connect = mysqli_connect($servername, $username, $password, $dbname);
 
-  $conn = mysqli_connect($servername, $username, $password, $db_name);
+ $sql = "SELECT id, name from monster;";
 
-  $sql = "SELECT id, name from monster;";
+ $result = mysqli_query($connect, $sql);
 
-  $result = mysqli_query($conn, $sql);
+ echo "<table align='center' border='1'>";
+ echo "<tr><th width='200' align='left'>ID</th><th width='200' align='left'>Name</th><th>Audio</th><th>Image</th></tr>";
 
-  echo "<table align='center' border='1'>";
-  echo "<tr><th width='200' align='left'>ID</th><th width='200' align='left'>Name</th><th>Audio</th><th>Image</th></tr>";
-
-  while($row = mysqli_fetch_assoc($result)){
+ while($row = mysqli_fetch_assoc($result)){
     echo "<tr>";
     echo "<td>" . $row['id'] . "</td>";
     echo "<td>" . $row['name'] . "</td>";
@@ -25,5 +25,5 @@
 
   echo "</table>";
 
-  mysqli_close($conn);
+ mysqli_close($connect);
 ?>

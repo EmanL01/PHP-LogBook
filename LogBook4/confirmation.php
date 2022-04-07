@@ -1,127 +1,44 @@
 <?php
 
-  $qty = $_POST['selqty'];
-  $size = $_POST['selsize'];
-  $colour = $_POST['selcolour'];
-  switch ($size) {
-    case 'Small':
-      $total = $qty * 15.75;
-      break;
-    case 'Medium':
-      $total = $qty * 16.75;
-      break;
-    case 'Large':
-      $total = $qty * 17.75;
-      break;
-    case 'Extra Large':
-      $total = $qty * 18.75;
-      break;
-    default:
-      $total = "Undefined";
-      break;
-  }
-  if(isset($_POST['selqty']))
-  {
-    echo "<h2> Your order qty is " . intval($qty) . ".</h2>";
-  }
-  if(isset($_POST['selsize']))
-  {
-    echo "<h2> The size of the ordered widgets are $size.</h2>";
-  }
-  if(isset($_POST['selcolour']))
-  {
-    echo "<h2> The selected colour is $colour.</h2>";
-  }
-  if(isset($total) && $total != "Undefined")
-  {
-    echo "<h2><hr/> The total price of your purchase is: £" . $total . "</h2>";
-  }
-  */
+ session_start();
 
-  $qty = $_COOKIE['selqty'];
-  $size = $_COOKIE['selsize'];
-  $colour = $_POST['selcolour'];
-  switch ($size) {
-    case 'Small':
-      $total = $qty * 15.75;
-      break;
-    case 'Medium':
-      $total = $qty * 16.75;
-      break;
-    case 'Large':
-      $total = $qty * 17.75;
-      break;
-    case 'Extra Large':
-      $total = $qty * 18.75;
-      break;
-    default:
-      $total = "Undefined";
-      break;
-  }
-  if(isset($_COOKIE['selqty']))
-  {
-    echo "<h2> Your order qty is " . intval($qty) . ".</h2>";
-  }
-  if(isset($_COOKIE['selsize']))
-  {
-    echo "<h2> The size of the ordered widgets are $size.</h2>";
-  }
-  if(isset($_POST['selcolour']))
-  {
-    echo "<h2> The selected colour is $colour.</h2>";
-  }
-  if(isset($total) && $total != "Undefined")
-  {
-    echo "<h2><hr/> The total price of your purchase is: £" . $total . "</h2>";
-  }
-  */
+ echo "<h2> Your order qty is {$_SESSION["selqty"]} </h2></br>";
+ echo "<h2> and the selected colour is {$_POST["selcolour"]}.</h2>";
+ 
+   // if(isset($_SESSION['selqty']) && isset($_SESSION['txtprice']) && isset($_POST['selcolour'])){
+      //$qty = $_SESSION['selqty'];
+      //$price = $_SESSION['txtprice'];
+      //$colour = $_POST['selcolour'];
 
-  session_start();
+     // $total = $qty * $price;
+    
+     if($_POST)
+   {
+      $selqty = $_SESSION["selqty"];
+      $selsize = $_SESSION["selsize"];
 
-  $qty = $_SESSION['selqty'];
-  $colour = $_POST['selcolour'];
-  $size = $_SESSION['selsize'];
+      if($_SESSION["selsize"] == "Small (£15.75)")
+      {
+         $total = $selqty * 15.75;
+      }
+      else if ($_SESSION["selsize"] == "Medium (£16.75)")
+      {
+         $total = $selqty * 16.75;
+      }
+      else if ($_SESSION["selsize"] == "Large (£17.75)")
+      {
+         $total = $selqty * 17.75;
+      }
+      else if ($_SESSION["selsize"] == "Extra Large (£18.75)")
+      {
+         $total = $selqty * 18.75;
+      }
 
-  switch ($size) {
-
-    case 'Small':
-
-      $total = $qty * 15.75;
-      break;
-
-    case 'Medium':
-      $total = $qty * 16.75;
-      break;
-
-    case 'Large':
-      $total = $qty * 17.75;
-      break;
-
-    case 'Extra Large':
-      $total = $qty * 18.75;
-      break;
-
-    default:
-      $total = "Undefined";
-      break;
-  }
-
-  if(isset($_SESSION['selqty']))
-  {
-    echo "<h2> Number of widgets: " . intval($qty) . "</h2>";
-  }
-
-  if(isset($_SESSION['selsize']))
-  {
-    echo "<h2> Size of widgets: $size </h2>";
-  }
-
-  if(isset($_POST['selcolour']))
-  {
-    echo "<h2> Selected colour: $colour</h2>";
-  }
-  if(isset($total) && $total != "Undefined")
-  {
-    echo "<h2><hr/> Total price: £" . $total . "</h2>";
-  }
+      else
+      {
+         echo "No avaiable price fond ";
+      }
+      echo ("<h2>The sum of the widget is $total</h2>");
+   }
 ?>
+  

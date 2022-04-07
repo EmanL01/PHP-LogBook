@@ -3,19 +3,19 @@
   header("Content-type: image/jpeg");
 
   $servername = 'localhost';
-  $db_name = 'db1_21906325';
+  $dbname = 'phpmyadmin';
   $username = 'root';
   $password = '';
 
-  $conn = mysqli_connect($servername, $username, $password, $db_name);
+  $connect = mysqli_connect($servername, $username, $password, $dbname);
 
-  $id = $_GET['id'];
-  $sql = "SELECT image FROM monster WHERE id= '$id'";
-
-  $result = mysqli_query($conn, $sql);
+  $sql = "SELECT image FROM monster WHERE id='" . $_GET['id'] ."';";
+	
+  $result = mysqli_query($connect, $sql);
   $row = mysqli_fetch_array($result);
-
+  
   $jpg = $row["image"];
 
   echo $jpg;
 ?>
+

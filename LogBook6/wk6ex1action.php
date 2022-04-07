@@ -1,49 +1,46 @@
 <?php
-	// Connecting to server and select database
-  $servername = 'localhost';
-	$db_name = 'db1_21906325';
-	$username = 'root';
-	$password = '';
+    $servername = 'localhost';
+    $dbname = 'db1';
+    $username = 'root';
+    $password = '';
 
-  $conn = mysqli_connect($servername, $username, $password, $db_name);
-	if (mysqli_connect_errno())
-	{
-  	echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  	exit();
-	}
+    $sql = "INSERT INTO test (name, email , phone_number) ";
+    $sql = $sql . " values ('$_POST[txtName]','$_POST[txtEmail]','$_POST[txtPhoneNumber]')";
 
-	//Sql query
-	$sql = "INSERT INTO test (name,email,phone_number) ";
-	$sql = $sql . " values ('{$_POST['txtName']}','{$_POST['txtEmail']}','{$_POST['txtPhoneNumber']}')";
+    // Connect to server and select database
 
-	// Execute query
-	$result = mysqli_query($conn, $sql);
+    $connect = mysqli_connect($servername, $username, $password, $dbname);
+    if(mysqli_connect_errno())
+    {
+        echo "Connection couldn't be established to SQL: " . mysqli_connect_errno();
+    }
 
-	if ($result)
-	{
-  	echo "Record updated!<br/>";
-	}
-	else
-	{
-  	echo "Error: " . mysqli_error($conn);
-	}
+    // Execute sql statement
+    $result = mysqli_query($connect,$sql);
 
-	//Sql query
-	$sql = "SELECT * from test";
+    if($result)
+    {
+        echo"Record has been added.<br/>";
+    }
+    else
+    {
+        echo"Flaw transpired: " . mysqli_error($connect);
+    }
 
-	// Execute query
-	$result = mysqli_query($conn, $sql);
+    $sql = "SELECT * from test";
 
-	//Display
-	if($result)
-	{
-		while ($row = mysqli_fetch_assoc($result))
-		{
-			echo "$row[name]  $row[email]  $row[phone_number] <br/>";
-		}
-	}
-	else
-	{
-		echo "Error fetching data!";
-	}
+    // Execute sql statement
+    $result = mysqli_query($connect,$sql);
+
+    if($result)
+    {
+        while ($row = mysqli_fetch_assoc($result))
+        {
+            echo "$row[name]  $row[email]  $row[phone_number] <br/>";
+        }
+    }
+    else
+    {
+        echo "Fault occured when calling for data.";
+    }
 ?>

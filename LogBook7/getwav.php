@@ -3,21 +3,18 @@
   header("Content-type: audio/wav");
 
   $servername = 'localhost';
-  $db_name = 'db1_21906325';
+  $dbname = 'phpmyadmin';
   $username = 'root';
   $password = '';
 
-  $conn = mysqli_connect($servername, $username, $password, $db_name);
+  $connect = mysqli_connect($servername, $username, $password, $dbname);
 
-  $id = $_GET['id'];
-  $sql = "SELECT audio FROM monster WHERE id= '$id'";
-
-  $result = mysqli_query($conn, $sql);
+  $sql = "SELECT audio FROM monster WHERE id='" . $_GET['id'] ."';";
+	
+  $result = mysqli_query($connect, $sql);
   $row = mysqli_fetch_array($result);
-
+  
   $audio = $row["audio"];
 
   echo $audio;
 ?>
-© 2022 GitHub, Inc.
-Terms

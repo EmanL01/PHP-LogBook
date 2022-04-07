@@ -1,8 +1,14 @@
 <?php
 	include("myfunctions.inc");
-
 	html_header("My first function demo");
-	html_h1("These functions are going to save me lots of time");
-  html_h2("Header 2");
+
+    //exercise 6
+	//echo "My Father pays £" . calculatetax(1500, 22) . " tax    ";
+
+    //exercise 7 
+   // echo "My Father pays £" . calculatetax(15000) . " tax ";
+
+   //exercise 8 
+   echo "My Father pays £" . calculatetax(15000, 22, 4000) . " tax ";
 	html_footer();
 ?>
